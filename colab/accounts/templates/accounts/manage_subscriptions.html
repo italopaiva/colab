@@ -1,22 +1,24 @@
 {% extends 'base.html' %}
 {% load i18n gravatar %}
 {% load staticfiles %}
+
+{% block head_js %}
+  {{block.super}}
+  <script src="{% static 'js/subscriptions.js' %}"></script>
+{% endblock %}
+
 {% block main-content %}
 
   <h2>{% blocktrans %}Group Subscriptions{% endblocktrans %}</h2>
   <h3>{% gravatar user_.email 50 %} {{ user_.get_full_name }} ({{ user_.username }})</h3>
   <br>
 
-  {% block head_js %}
-    {{block.super}}
-    <script src="{% static 'js/subscriptions.js' %}"></script>
-  {% endblock %}
   <input id="user_name" type="hidden" value="{{user_.username}}">  
 
   <div class="row">
     <div class="col-lg-6 col-md-6">
       <div class="input-group">
-        <input id="list_name" type="text" class="form-control" placeholder="{% trans "Inform the list name" %}">
+        <input id="list_name" type="text" value="{{list_name}}" class="form-control" placeholder="{% trans "Inform the list name" %}">
         <span class="input-group-btn">
           <button id="search_list" type="submit" class="btn btn-primary">
             <span class="glyphicon glyphicon-search"></span>
