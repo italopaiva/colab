@@ -14,6 +14,9 @@
                 <div class="checkbox" title="{{ list.description }}">
                   <label>
                     <input name="{{ email }}" value="{{ list.listname }}" type="checkbox" {% if checked %}checked{% endif%}>{{ list.listname }}</input>
+		    {% if list.archive_private != 0 %}
+                      <span class="label label-default">{% trans 'Private' %}</span>
+                    {% endif %}
                   </label>
                 </div>
               {% endfor %}
@@ -54,9 +57,3 @@
     {% endfor %}
     
     </div>
-
-  <div class="row">
-    <div class="text-center">
-      <button class="btn btn-lg btn-primary" type="submit">{% trans 'Update subscriptions' %}</button>
-    </div>
-  </div>
